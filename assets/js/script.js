@@ -1,5 +1,5 @@
 // Assignment code here
-function parameterPrompts() {
+function initializedParameters() {
   var password =
   {
     passwordLength: "Length not Selected",
@@ -7,15 +7,55 @@ function parameterPrompts() {
     hasLowerCase: "Parameter not selected",
     hasNumbers: "Parameter not selected",
     hasSpecial: "Parameter not selected"
-
   }
-  prompt("Select which parameters to modify:" +
+  return(password)
+}
+function initialPrompts(numberChoices,password) {
+  switch(parseInt(numberChoices)){
+    case 1:
+      prompt("What is the length of the password?")
+      break;
+    case 2:
+      prompt("Are there uppercase characters?")
+      break;
+    case 3:
+      prompt("Are there lowercase characters?")
+      break;
+    case 4:
+      prompt("Are there numerical characters?")
+    case 5:
+      prompt("Are there special characters?")
+      break;
+    default:
+      numberChoices = prompt("Please enter a number\n" +
+      "Select which parameters to modify:" +
+    "\n1:Length                       | " + password.passwordLength +
+    "\n2:Uppercase                 | " + password.hasUpperCase +
+    "\n3:Lowercase                 | " + password.hasLowerCase +
+    "\n4:Numbers                   | " + password.hasNumbers +
+    "\n5:Special Characters     | " + password.hasSpecial)
+    initialPrompts(numberChoices,password)
+  }
+} 
+function passwordLength() {
+
+  return(password.passwordLength)
+}
+function parameterPrompts(password) {
+  parameterModification = prompt("Select which parameters to modify:" +
     "\n1:Length                       | " + password.passwordLength +
     "\n2:Uppercase                 | " + password.hasUpperCase +
     "\n3:Lowercase                 | " + password.hasLowerCase +
     "\n4:Numbers                   | " + password.hasNumbers +
     "\n5:Special Characters     | " + password.hasSpecial);
-  // password.passwordLength = prompt("What is the length of the password?")
+    initialPrompts(parameterModification,password)
+    // password.passwordLength = prompt("What is the length of the password?")
+    // password.passwordLength = parseInt(password.passwordLength)
+    // while(isNaN(password.passwordLength)){
+    //   password.passwordLength = prompt("Please enter a number")
+    //   password.passwordLength = parseInt(password.passwordLength)
+    // }
+    // console.log(password.passwordLength);
   // password.hasUpperCase = prompt("Are there uppercase characters?")
   // password.hasLowerCase = prompt("Are there lowercase characters?")
   // password.hasNumbers = prompt("Are there numerical characters?")
@@ -27,7 +67,6 @@ function parameterPrompts() {
   //   "\n4:Numbers " + password.hasNumbers +
   //   "\n5:Special Characters" + password.hasSpecial);
 
-  console.log(parameterModification)
   return console.log(password);
 }
 
@@ -46,6 +85,6 @@ var generateBtn = document.querySelector("#generate");
 
 
 // }
-parameterPrompts();
+parameterPrompts(initializedParameters());
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);

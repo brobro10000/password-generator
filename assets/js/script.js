@@ -83,7 +83,7 @@ var generateBtn = document.querySelector("#generate");
 //   var password = generatePassword();
 //   var passwordText = document.querySelector("#password");
 
-//   passwordText.value = password;8
+//   passwordText.value = password;
 
 
 // }

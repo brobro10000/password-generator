@@ -36,12 +36,14 @@ function initialPrompts(numberChoices,password) {
     "\n5:Special Characters     | " + password.hasSpecial)
     initialPrompts(numberChoices,password)
   }
+
 } 
-function passwordLength() {
+function passwordLength(answer) {
 
   return(password.passwordLength)
 }
-function parameterPrompts(password) {
+function parameterPrompts() {
+  password=initializedParameters()
   parameterModification = prompt("Select which parameters to modify:" +
     "\n1:Length                       | " + password.passwordLength +
     "\n2:Uppercase                 | " + password.hasUpperCase +
@@ -85,6 +87,6 @@ var generateBtn = document.querySelector("#generate");
 
 
 // }
-parameterPrompts(initializedParameters());
+
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", parameterPrompts);

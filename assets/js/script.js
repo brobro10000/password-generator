@@ -10,46 +10,95 @@ function initializedParameters() {
   }
   return(password)
 }
+
 function initialPrompts(numberChoices,password) {
+  var answer
   switch(parseInt(numberChoices)){
+    case 0:
+      numberChoices = prompt("Choose another parameter\n" + "Select which parameters to modify:" +
+      "\n1 :Length                       | " + password.passwordLength +
+      "\n2 :Uppercase                 | " + password.hasUpperCase +
+      "\n3 :Lowercase                 | " + password.hasLowerCase +
+      "\n4 :Numbers                   | " + password.hasNumbers +
+      "\n5 :Special Characters     | " + password.hasSpecial)
+      initialPrompts(numberChoices,password)
     case 1:
-      prompt("What is the length of the password?")
+      answer = prompt("What is the length of the password?")
+      passwordLength(answer)
+      numberChoices = 0;
       break;
     case 2:
-      prompt("Are there uppercase characters?")
+      answer = prompt("Are there uppercase characters?")
+      isUpperCase(answer)
+      numberChoices = 0;
       break;
     case 3:
-      prompt("Are there lowercase characters?")
+      answer = prompt("Are there lowercase characters?")
+      isLowerCase(answer)
+      numberChoices = 0;
       break;
     case 4:
-      prompt("Are there numerical characters?")
+      answer = prompt("Are there numerical characters?")
+      isNumber(answer)
+      numberChoices = 0;
+      break;
     case 5:
-      prompt("Are there special characters?")
+      answer = prompt("Are there special characters?")
+      isSpecial(answer)
+      numberChoices = 0;
       break;
     default:
       numberChoices = prompt("Please enter a number\n" +
       "Select which parameters to modify:" +
-    "\n1:Length                       | " + password.passwordLength +
-    "\n2:Uppercase                 | " + password.hasUpperCase +
-    "\n3:Lowercase                 | " + password.hasLowerCase +
-    "\n4:Numbers                   | " + password.hasNumbers +
-    "\n5:Special Characters     | " + password.hasSpecial)
+    "\n1 :Length                       | " + password.passwordLength +
+    "\n2 :Uppercase                 | " + password.hasUpperCase +
+    "\n3 :Lowercase                 | " + password.hasLowerCase +
+    "\n4 :Numbers                   | " + password.hasNumbers +
+    "\n5 :Special Characters     | " + password.hasSpecial)
     initialPrompts(numberChoices,password)
   }
-
+  console.log(password)
+  initialPrompts(numberChoices,password)
 } 
+
 function passwordLength(answer) {
+  password.passwordLength = answer;
 
   return(password.passwordLength)
 }
+
+function isUpperCase(answer) {
+  password.hasUpperCase = answer;
+
+  return(password.hasUpperCase)
+}
+
+function isLowerCase(answer) {
+  password.hasLowerCase = answer;
+
+  return(password.hasLowerCase)
+}
+
+function isNumber(answer) {
+  password.hasNumbers = answer;
+
+  return(password.hasNumbers)
+}
+
+function isSpecial(answer) {
+  password.hasSpecial = answer;
+
+  return(password.hasSpecial)
+}
+
 function parameterPrompts() {
   password=initializedParameters()
   parameterModification = prompt("Select which parameters to modify:" +
-    "\n1:Length                       | " + password.passwordLength +
-    "\n2:Uppercase                 | " + password.hasUpperCase +
-    "\n3:Lowercase                 | " + password.hasLowerCase +
-    "\n4:Numbers                   | " + password.hasNumbers +
-    "\n5:Special Characters     | " + password.hasSpecial);
+    "\n1 :Length                       | " + password.passwordLength +
+    "\n2 :Uppercase                 | " + password.hasUpperCase +
+    "\n3 :Lowercase                 | " + password.hasLowerCase +
+    "\n4 :Numbers                   | " + password.hasNumbers +
+    "\n5 :Special Characters     | " + password.hasSpecial);
     initialPrompts(parameterModification,password)
     // password.passwordLength = prompt("What is the length of the password?")
     // password.passwordLength = parseInt(password.passwordLength)

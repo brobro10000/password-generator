@@ -12,7 +12,6 @@ function initializedParameters() {
 }
 
 function initialPrompts(numberChoices,password) {
-  var answer
   switch(parseInt(numberChoices)){
     case 0:
       numberChoices = prompt("Choose another parameter\n" + "Select which parameters to modify:" +
@@ -62,6 +61,7 @@ function initialPrompts(numberChoices,password) {
 } 
 
 function passwordLength(answer) {
+  answer = parseInt(answer)
   password.passwordLength = answer;
 
   return(password.passwordLength)

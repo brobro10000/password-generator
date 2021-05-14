@@ -10,7 +10,6 @@ function initializedParameters() {
   }
   return(password)
 }
-
 function initialPrompts(numberChoices,password) {
   switch(parseInt(numberChoices)){
     case 0:
@@ -138,4 +137,5 @@ var generateBtn = document.querySelector("#generate");
 // }
 
 // Add event listener to generate button
+
 generateBtn.addEventListener("click", parameterPrompts);

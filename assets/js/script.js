@@ -97,8 +97,17 @@ function parameterPrompts() {
     "\n2 :Uppercase                 | " + password.hasUpperCase +
     "\n3 :Lowercase                 | " + password.hasLowerCase +
     "\n4 :Numbers                   | " + password.hasNumbers +
-    "\n5 :Special Characters     | " + password.hasSpecial);
-    initialPrompts(parameterModification,password)
+    "\n5 :Special Characters     | " + password.hasSpecial + 
+    "\n\n Press Cancel to Exit Generator");
+    if(parameterModification === null)
+    {
+      
+    }
+    else 
+    {
+      initialPrompts(parameterModification,password)
+    }
+    
     // password.passwordLength = prompt("What is the length of the password?")
     // password.passwordLength = parseInt(password.passwordLength)
     // while(isNaN(password.passwordLength)){

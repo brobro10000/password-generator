@@ -196,6 +196,10 @@ function generatePassword(password) {
     console.log(password[i]);
   }
 }
+function getRandom (min, max)
+    {
+    return Math.floor(Math.random()* (max - min)) + min;
+    }
 function parameterPrompts() {
   password = initializedParameters()
   parameterModification = prompt("Select which parameters to modify:" +

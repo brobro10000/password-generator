@@ -30,18 +30,15 @@ function initialPrompts(numberChoices, password) {
       numberChoices = 0;
       break;
     case 3:
-      answer = prompt("Are there lowercase characters?")
-      isLowerCase(answer)
+      isLowerCase()
       numberChoices = 0;
       break;
     case 4:
-      answer = prompt("Are there numerical characters?")
-      isNumber(answer)
+      isNumber()
       numberChoices = 0;
       break;
     case 5:
-      answer = prompt("Are there special characters?")
-      isSpecial(answer)
+      isSpecial()
       numberChoices = 0;
       break;
     case isNaN(numberChoices):
@@ -90,21 +87,17 @@ function passwordLength() {
 
 function isUpperCase() {
   var answer = prompt("Are there uppercase characters?" +
-                      "\nEnter Yes or No")
-  if(answer == null || answer == "")
-  {
+    "\nEnter Yes or No")
+  if (answer == null || answer == "") {
     alert("You must answer Yes or No")
     return isUpperCase()
   }
-  console.log(answer)
   answer = answer.trim();
-  console.log(answer)
   answer = answer.toLowerCase();
-  console.log(answer)
-  if(answer === "yes"){
-  password.hasUpperCase = true;
+  if (answer === "yes") {
+    password.hasUpperCase = true;
   }
-  else if(answer === "no"){
+  else if (answer === "no") {
     password.hasUpperCase = false;
   } else {
     alert("You must answer Yes or No")
@@ -113,21 +106,66 @@ function isUpperCase() {
   return (password.hasUpperCase)
 }
 
-function isLowerCase(answer) {
-  password.hasLowerCase = answer;
-
+function isLowerCase() {
+  var answer = prompt("Are there lowercase characters?" +
+    "\nEnter Yes or No")
+  if (answer == null || answer == "") {
+    alert("You must answer Yes or No")
+    return isLowerCase()
+  }
+  answer = answer.trim();
+  answer = answer.toLowerCase();
+  if (answer === "yes") {
+    password.hasLowerCase = true;
+  }
+  else if (answer === "no") {
+    password.hasLowerCase = false;
+  } else {
+    alert("You must answer Yes or No")
+    return isLowerCase()
+  }
   return (password.hasLowerCase)
 }
 
-function isNumber(answer) {
-  password.hasNumbers = answer;
-
+function isNumber() {
+  var answer = prompt("Are there numerical characters?" +
+    "\nEnter Yes or No")
+  if (answer == null || answer == "") {
+    alert("You must answer Yes or No")
+    return isNumber()
+  }
+  answer = answer.trim();
+  answer = answer.toLowerCase();
+  if (answer === "yes") {
+    password.hasNumbers = true;
+  }
+  else if (answer === "no") {
+    password.hasNumbers = false;
+  } else {
+    alert("You must answer Yes or No")
+    return isNumber()
+  }
   return (password.hasNumbers)
 }
 
-function isSpecial(answer) {
-  password.hasSpecial = answer;
-
+function isSpecial() {
+  var answer = prompt("Are there special characters?" +
+    "\nEnter Yes or No")
+  if (answer == null || answer == "") {
+    alert("You must answer Yes or No")
+    return isSpecial()
+  }
+  answer = answer.trim();
+  answer = answer.toLowerCase();
+  if (answer === "yes") {
+    password.hasSpecial = true;
+  }
+  else if (answer === "no") {
+    password.hasSpecial = false;
+  } else {
+    alert("You must answer Yes or No")
+    return isSpecial()
+  }
   return (password.hasSpecial)
 }
 

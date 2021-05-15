@@ -38,26 +38,23 @@ function initialPrompts(numberChoices, password) {
       return resetRecall()
     case !isNaN(numberChoices):
     default:
-      if(numberChoices == -1)
-      {
+      if (numberChoices == -1) {
         var output = confirm("Press 'OK' to Generate Password or 'Cancel' to leave Password Generator")
-        if(output){
-          if(password.passwordLength == "Length not Selected")
-          {
+        if (output) {
+          if (password.passwordLength == "Length not Selected") {
             alert("Cannot Generate password, please select a password length")
             resetRecall()
           }
           else {
-          alert("Generating Password")
-          generatePassword(password)
-          } 
+            alert("Generating Password")
+            generatePassword(password)
+          }
         } else {
           alert("Exiting Generator")
         }
-      }else {
+      } else {
         return resetRecall()
       }
-  
   }
   console.log(password)
 }
@@ -169,16 +166,13 @@ function isSpecial() {
   return (password.hasSpecial)
 }
 function resetRecall() {
-  var numberChoices=0
-  initialPrompts(numberChoices,password)
+  var numberChoices = 0
+  initialPrompts(numberChoices, password)
 }
 
-function generatePassword(password)
-{
-  for(let i in password)
-  {
-    if(password[i] == "Length not Selected")
-    {
+function generatePassword(password) {
+  for (let i in password) {
+    if (password[i] == "Length not Selected") {
       alert("A password length is required")
     }
     console.log(password[i]);

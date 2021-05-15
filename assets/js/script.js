@@ -19,49 +19,49 @@ function initialPrompts(numberChoices, password) {
         "\n3 :Lowercase                 | " + password.hasLowerCase +
         "\n4 :Numbers                   | " + password.hasNumbers +
         "\n5 :Special Characters     | " + password.hasSpecial +
-        "\n\n Press 'Cancel' or 'OK' with empty prompt to Exit Generator")
+        "\n\n Type -1 to generate password or exit function")
       return initialPrompts(numberChoices, password)
     case 1:
       passwordLength()
-      numberChoices = 0;
-      break;
+      return resetRecall()
     case 2:
       isUpperCase()
-      numberChoices = 0;
-      break;
+      return resetRecall()
     case 3:
       isLowerCase()
-      numberChoices = 0;
-      break;
+      return resetRecall()
     case 4:
       isNumber()
-      numberChoices = 0;
-      break;
+      return resetRecall()
     case 5:
       isSpecial()
-      numberChoices = 0;
-      break;
-    case isNaN(numberChoices):
+      return resetRecall()
+    case !isNaN(numberChoices):
     default:
-      if (!isNaN(numberChoices)) {
-        console.log(password)
+      if(numberChoices == -1)
+      {
+        var output = confirm("Press 'OK' to Generate Password or 'Cancel' to leave Password Generator")
+        if(output){
+          if(password.passwordLength == "Length not Selected")
+          {
+            alert("Cannot Generate password, please select a password length")
+            resetRecall()
+          }
+          else {
+          alert("Generating Password")
+          generatePassword(password)
+          } 
+        } else {
+          alert("Exiting Generator")
+        }
+      }else {
+        return resetRecall()
       }
-      else {
-        numberChoices = prompt("Please enter a number" +
-          "\nChoose another parameter to modify" +
-          "\nSelect which parameters to modify:" +
-          "\n1 :Length                       | " + password.passwordLength +
-          "\n2 :Uppercase                 | " + password.hasUpperCase +
-          "\n3 :Lowercase                 | " + password.hasLowerCase +
-          "\n4 :Numbers                   | " + password.hasNumbers +
-          "\n5 :Special Characters     | " + password.hasSpecial +
-          "\n\n Press 'Cancel' or 'OK' with empty prompt to Exit Generator")
-        return initialPrompts(numberChoices, password)
-      }
+  
   }
   console.log(password)
-  return initialPrompts(numberChoices, password)
 }
+
 
 function passwordLength() {
   var answer = prompt("What is the length of the password?")
@@ -168,7 +168,22 @@ function isSpecial() {
   }
   return (password.hasSpecial)
 }
+function resetRecall() {
+  var numberChoices=0
+  initialPrompts(numberChoices,password)
+}
 
+function generatePassword(password)
+{
+  for(let i in password)
+  {
+    if(password[i] == "Length not Selected")
+    {
+      alert("A password length is required")
+    }
+    console.log(password[i]);
+  }
+}
 function parameterPrompts() {
   password = initializedParameters()
   parameterModification = prompt("Select which parameters to modify:" +
@@ -179,31 +194,10 @@ function parameterPrompts() {
     "\n5 :Special Characters     | " + password.hasSpecial +
     "\n\n Press 'Cancel' or 'OK' with empty prompt to Exit Generator");
   if (parameterModification === null) {
-
   }
   else {
     return initialPrompts(parameterModification, password)
   }
-
-  // password.passwordLength = prompt("What is the length of the password?")
-  // password.passwordLength = parseInt(password.passwordLength)
-  // while(isNaN(password.passwordLength)){
-  //   password.passwordLength = prompt("Please enter a number")
-  //   password.passwordLength = parseInt(password.passwordLength)
-  // }
-  // console.log(password.passwordLength);
-  // password.hasUpperCase = prompt("Are there uppercase characters?")
-  // password.hasLowerCase = prompt("Are there lowercase characters?")
-  // password.hasNumbers = prompt("Are there numerical characters?")
-  // password.hasSpecial = prompt("Are there special characters?")
-  // parameterModification = prompt("Select which parameters to modify:" +
-  //   "\n1:Length " + password.passwordLength +
-  //   "\n2:Uppercase " + password.hasUpperCase +
-  //   "\n3:Lowercase " + password.hasLowerCase +
-  //   "\n4:Numbers " + password.hasNumbers +
-  //   "\n5:Special Characters" + password.hasSpecial);
-
-  return console.log(password);
 }
 
 // function generatePassword{

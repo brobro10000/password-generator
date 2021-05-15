@@ -8,18 +8,19 @@ function initializedParameters() {
     hasNumbers: "Parameter not selected",
     hasSpecial: "Parameter not selected"
   }
-  return(password)
+  return (password)
 }
-function initialPrompts(numberChoices,password) {
-  switch(parseInt(numberChoices)){
+function initialPrompts(numberChoices, password) {
+  switch (parseInt(numberChoices)) {
     case 0:
-      numberChoices = prompt("Choose another parameter\n" + "Select which parameters to modify:" +
-      "\n1 :Length                       | " + password.passwordLength +
-      "\n2 :Uppercase                 | " + password.hasUpperCase +
-      "\n3 :Lowercase                 | " + password.hasLowerCase +
-      "\n4 :Numbers                   | " + password.hasNumbers +
-      "\n5 :Special Characters     | " + password.hasSpecial)
-      initialPrompts(numberChoices,password)
+      numberChoices = prompt("Choose another parameter" + "\nSelect which parameters to modify:" +
+        "\n1 :Length                       | " + password.passwordLength +
+        "\n2 :Uppercase                 | " + password.hasUpperCase +
+        "\n3 :Lowercase                 | " + password.hasLowerCase +
+        "\n4 :Numbers                   | " + password.hasNumbers +
+        "\n5 :Special Characters     | " + password.hasSpecial +
+        "\n\n Press 'Cancel' or 'OK' with empty prompt to Exit Generator")
+        initialPrompts(numberChoices, password)
     case 1:
       answer = prompt("What is the length of the password?")
       passwordLength(answer)
@@ -45,76 +46,82 @@ function initialPrompts(numberChoices,password) {
       isSpecial(answer)
       numberChoices = 0;
       break;
+    case isNaN(numberChoices):
     default:
-      numberChoices = prompt("Please enter a number\n" +
-      "Select which parameters to modify:" +
-    "\n1 :Length                       | " + password.passwordLength +
-    "\n2 :Uppercase                 | " + password.hasUpperCase +
-    "\n3 :Lowercase                 | " + password.hasLowerCase +
-    "\n4 :Numbers                   | " + password.hasNumbers +
-    "\n5 :Special Characters     | " + password.hasSpecial)
-    initialPrompts(numberChoices,password)
+      if(!isNaN(numberChoices)){
+        console.log(password)
+      }
+      else{
+      numberChoices = prompt("Please enter a number" +
+        "\nChoose another parameter to modify" +
+        "\nSelect which parameters to modify:" +
+        "\n1 :Length                       | " + password.passwordLength +
+        "\n2 :Uppercase                 | " + password.hasUpperCase +
+        "\n3 :Lowercase                 | " + password.hasLowerCase +
+        "\n4 :Numbers                   | " + password.hasNumbers +
+        "\n5 :Special Characters     | " + password.hasSpecial +
+        "\n\n Press 'Cancel' or 'OK' with empty prompt to Exit Generator")
+        initialPrompts(numberChoices, password) 
+      }
   }
   console.log(password)
   initialPrompts(numberChoices,password)
-} 
+}
 
 function passwordLength(answer) {
   answer = parseInt(answer)
   password.passwordLength = answer;
 
-  return(password.passwordLength)
+  return (password.passwordLength)
 }
 
 function isUpperCase(answer) {
   password.hasUpperCase = answer;
 
-  return(password.hasUpperCase)
+  return (password.hasUpperCase)
 }
 
 function isLowerCase(answer) {
   password.hasLowerCase = answer;
 
-  return(password.hasLowerCase)
+  return (password.hasLowerCase)
 }
 
 function isNumber(answer) {
   password.hasNumbers = answer;
 
-  return(password.hasNumbers)
+  return (password.hasNumbers)
 }
 
 function isSpecial(answer) {
   password.hasSpecial = answer;
 
-  return(password.hasSpecial)
+  return (password.hasSpecial)
 }
 
 function parameterPrompts() {
-  password=initializedParameters()
+  password = initializedParameters()
   parameterModification = prompt("Select which parameters to modify:" +
     "\n1 :Length                       | " + password.passwordLength +
     "\n2 :Uppercase                 | " + password.hasUpperCase +
     "\n3 :Lowercase                 | " + password.hasLowerCase +
     "\n4 :Numbers                   | " + password.hasNumbers +
-    "\n5 :Special Characters     | " + password.hasSpecial + 
-    "\n\n Press Cancel to Exit Generator");
-    if(parameterModification === null)
-    {
-      
-    }
-    else 
-    {
-      initialPrompts(parameterModification,password)
-    }
-    
-    // password.passwordLength = prompt("What is the length of the password?")
-    // password.passwordLength = parseInt(password.passwordLength)
-    // while(isNaN(password.passwordLength)){
-    //   password.passwordLength = prompt("Please enter a number")
-    //   password.passwordLength = parseInt(password.passwordLength)
-    // }
-    // console.log(password.passwordLength);
+    "\n5 :Special Characters     | " + password.hasSpecial +
+    "\n\n Press 'Cancel' or 'OK' with empty prompt to Exit Generator");
+  if (parameterModification === null) {
+
+  }
+  else {
+    initialPrompts(parameterModification, password)
+  }
+
+  // password.passwordLength = prompt("What is the length of the password?")
+  // password.passwordLength = parseInt(password.passwordLength)
+  // while(isNaN(password.passwordLength)){
+  //   password.passwordLength = prompt("Please enter a number")
+  //   password.passwordLength = parseInt(password.passwordLength)
+  // }
+  // console.log(password.passwordLength);
   // password.hasUpperCase = prompt("Are there uppercase characters?")
   // password.hasLowerCase = prompt("Are there lowercase characters?")
   // password.hasNumbers = prompt("Are there numerical characters?")

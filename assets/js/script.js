@@ -20,10 +20,10 @@ function initialPrompts(numberChoices, password) {
         "\n4 :Numbers                   | " + password.hasNumbers +
         "\n5 :Special Characters     | " + password.hasSpecial +
         "\n\n Press 'Cancel' or 'OK' with empty prompt to Exit Generator")
-        initialPrompts(numberChoices, password)
+      initialPrompts(numberChoices, password)
     case 1:
-      answer = prompt("What is the length of the password?")
-      passwordLength(answer)
+
+      passwordLength()
       numberChoices = 0;
       break;
     case 2:
@@ -48,30 +48,45 @@ function initialPrompts(numberChoices, password) {
       break;
     case isNaN(numberChoices):
     default:
-      if(!isNaN(numberChoices)){
+      if (!isNaN(numberChoices)) {
         console.log(password)
       }
-      else{
-      numberChoices = prompt("Please enter a number" +
-        "\nChoose another parameter to modify" +
-        "\nSelect which parameters to modify:" +
-        "\n1 :Length                       | " + password.passwordLength +
-        "\n2 :Uppercase                 | " + password.hasUpperCase +
-        "\n3 :Lowercase                 | " + password.hasLowerCase +
-        "\n4 :Numbers                   | " + password.hasNumbers +
-        "\n5 :Special Characters     | " + password.hasSpecial +
-        "\n\n Press 'Cancel' or 'OK' with empty prompt to Exit Generator")
-        initialPrompts(numberChoices, password) 
+      else {
+        numberChoices = prompt("Please enter a number" +
+          "\nChoose another parameter to modify" +
+          "\nSelect which parameters to modify:" +
+          "\n1 :Length                       | " + password.passwordLength +
+          "\n2 :Uppercase                 | " + password.hasUpperCase +
+          "\n3 :Lowercase                 | " + password.hasLowerCase +
+          "\n4 :Numbers                   | " + password.hasNumbers +
+          "\n5 :Special Characters     | " + password.hasSpecial +
+          "\n\n Press 'Cancel' or 'OK' with empty prompt to Exit Generator")
+        initialPrompts(numberChoices, password)
       }
   }
   console.log(password)
-  initialPrompts(numberChoices,password)
+  initialPrompts(numberChoices, password)
 }
 
-function passwordLength(answer) {
+function passwordLength() {
+  var answer = prompt("What is the length of the password?")
   answer = parseInt(answer)
-  password.passwordLength = answer;
-
+  if (isNaN(answer)) {
+    alert("Not a number" +
+      "\nPassword must be between 8-128 characters")
+    return passwordLength()
+  }
+  else if (answer > 128) {
+    alert("Exceeded maximum password length" +
+      "\n Password must be between 8-128 characters")
+    return passwordLength()
+  } else if (answer < 8) {
+    alert("Did not meet the minimum password length" +
+      "\n Password must be between 8-128 characters")
+    return passwordLength()
+  } else {
+    password.passwordLength = answer;
+  }
   return (password.passwordLength)
 }
 

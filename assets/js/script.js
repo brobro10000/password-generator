@@ -20,15 +20,13 @@ function initialPrompts(numberChoices, password) {
         "\n4 :Numbers                   | " + password.hasNumbers +
         "\n5 :Special Characters     | " + password.hasSpecial +
         "\n\n Press 'Cancel' or 'OK' with empty prompt to Exit Generator")
-      initialPrompts(numberChoices, password)
+      return initialPrompts(numberChoices, password)
     case 1:
-
       passwordLength()
       numberChoices = 0;
       break;
     case 2:
-      answer = prompt("Are there uppercase characters?")
-      isUpperCase(answer)
+      isUpperCase()
       numberChoices = 0;
       break;
     case 3:
@@ -61,11 +59,11 @@ function initialPrompts(numberChoices, password) {
           "\n4 :Numbers                   | " + password.hasNumbers +
           "\n5 :Special Characters     | " + password.hasSpecial +
           "\n\n Press 'Cancel' or 'OK' with empty prompt to Exit Generator")
-        initialPrompts(numberChoices, password)
+        return initialPrompts(numberChoices, password)
       }
   }
   console.log(password)
-  initialPrompts(numberChoices, password)
+  return initialPrompts(numberChoices, password)
 }
 
 function passwordLength() {
@@ -90,9 +88,28 @@ function passwordLength() {
   return (password.passwordLength)
 }
 
-function isUpperCase(answer) {
-  password.hasUpperCase = answer;
-
+function isUpperCase() {
+  var answer = prompt("Are there uppercase characters?" +
+                      "\nEnter Yes or No")
+  if(answer == null || answer == "")
+  {
+    alert("You must answer Yes or No")
+    return isUpperCase()
+  }
+  console.log(answer)
+  answer = answer.trim();
+  console.log(answer)
+  answer = answer.toLowerCase();
+  console.log(answer)
+  if(answer === "yes"){
+  password.hasUpperCase = true;
+  }
+  else if(answer === "no"){
+    password.hasUpperCase = false;
+  } else {
+    alert("You must answer Yes or No")
+    return isUpperCase()
+  }
   return (password.hasUpperCase)
 }
 
@@ -127,7 +144,7 @@ function parameterPrompts() {
 
   }
   else {
-    initialPrompts(parameterModification, password)
+    return initialPrompts(parameterModification, password)
   }
 
   // password.passwordLength = prompt("What is the length of the password?")

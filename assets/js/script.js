@@ -3,10 +3,10 @@ function initializedParameters() {
   var password =
   {
     passwordLength: "Length not Selected",
-    hasUpperCase: "Parameter not selected",
-    hasLowerCase: "Parameter not selected",
-    hasNumbers: "Parameter not selected",
-    hasSpecial: "Parameter not selected"
+    hasUpperCase: "Parameter not Selected",
+    hasLowerCase: "Parameter not Selected",
+    hasNumbers: "Parameter not Selected",
+    hasSpecial: "Parameter not Selected"
   }
   return (password)
 }
@@ -40,15 +40,27 @@ function initialPrompts(numberChoices, password) {
     default:
       if (numberChoices == -1) {
         var output = confirm("Press 'OK' to Generate Password or 'Cancel' to leave Password Generator")
-        if (output) {
-          if (password.passwordLength == "Length not Selected") {
+        if (output) 
+        {
+          if (password.passwordLength == "Length not Selected") 
+          {
             alert("Cannot Generate password, please select a password length")
-            resetRecall()
+            return resetRecall()
           }
-          else {
-            alert("Generating Password")
-            generatePassword(password)
-          }
+          for (let i in password) 
+          {
+            if (!isNaN(password[i])) 
+              {
+                continue;
+              } 
+              else if(password[i] != true || password[i] != false)
+              {
+                alert("Cannot Generate Password, all parameters are required to be filled")
+                return resetRecall()
+              }
+           }
+           alert("Generating Password")
+           return generatePassword(password)
         } else {
           alert("Exiting Generator")
         }
@@ -56,8 +68,9 @@ function initialPrompts(numberChoices, password) {
         return resetRecall()
       }
   }
-  console.log(password)
 }
+
+
 
 
 function passwordLength() {
@@ -171,9 +184,14 @@ function resetRecall() {
 }
 
 function generatePassword(password) {
+
   for (let i in password) {
-    if (password[i] == "Length not Selected") {
-      alert("A password length is required")
+    if(password[i] == true)
+    {
+      if(i == 1)
+      {
+        
+      }
     }
     console.log(password[i]);
   }

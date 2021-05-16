@@ -386,7 +386,7 @@ function parameterPrompts() {
     "\n3 :Lowercase                 | " + password.hasLowerCase +
     "\n4 :Numbers                   | " + password.hasNumbers +
     "\n5 :Special Characters     | " + password.hasSpecial +
-    "\n\n Press 'Cancel' or 'OK' with empty prompt to Exit Generator");
+    "\n\n Type -1 to generate password or exit function");
   if (parameterModification === null) {
   }
   else {

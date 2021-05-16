@@ -1,7 +1,5 @@
 # Password Generator
 
-# Hamzah Ullah Portfolio
-
 [![Image of Password Generator
 ](assets/images/PasswordGeneratorSS.PNG
 "PasswordGenerator Homepage")

@@ -1,4 +1,5 @@
 // Assignment code here
+//All parameters set to default by function, returns password
 function initializedParameters() {
   var password =
   {
@@ -10,8 +11,12 @@ function initializedParameters() {
   }
   return (password)
 }
+
+/*Takes user input and password object to determine user input cases to correct for 
+incorrect inputs and prohibited inputs*/
 function initialPrompts(numberChoices, password) {
   switch (parseInt(numberChoices)) {
+    //resets to 0 to determine next set of parameters
     case 0:
       numberChoices = prompt("Choose another parameter" + "\nSelect which parameters to modify:" +
         "\n1 :Length                       | " + password.passwordLength +
@@ -21,31 +26,39 @@ function initialPrompts(numberChoices, password) {
         "\n5 :Special Characters     | " + password.hasSpecial +
         "\n\n Type -1 to generate password or exit function")
       return initialPrompts(numberChoices, password)
+    //if input 1 change password.passwordLength
     case 1:
       passwordLength()
       return resetRecall()
+    //if input 2 change password.hasUpperCase to true/false
     case 2:
       isUpperCase()
       return resetRecall()
+    //if input 3 change password.hasLowerCase to true/false
     case 3:
       isLowerCase()
       return resetRecall()
+    //if input 4 change password.hasNumbers to true/false
     case 4:
       isNumber()
       return resetRecall()
+    //if input 5 change password.hasSpecial to true/false
     case 5:
       isSpecial()
       return resetRecall()
+    //default and not a number cases
     case !isNaN(numberChoices):
     default:
+      //uses -1 as an exit variable 
       if (numberChoices == -1) {
         var output = confirm("Press 'OK' to Generate Password or 'Cancel' to leave Password Generator")
-        var isTrue = 0;
+        //checks output for empty length parameters, reset/recalls if empty
         if (output) {
           if (password.passwordLength == "Length not Selected") {
             alert("Cannot Generate password, please select a password length")
             return resetRecall()
           }
+          //Checks for empty parameters for password character types, all must be true false
           for (let i in password) {
             if (!isNaN(password[i])) {
               continue;
@@ -55,28 +68,30 @@ function initialPrompts(numberChoices, password) {
               return resetRecall()
             }
           }
-          alert("Generating Password")
-          return generatePassword(password)
+          alert("Generating Password") //Original generatePassword(password) location
+          return
+          //Exit generater if exit function and cancel  
         } else {
           alert("Exiting Generator")
         }
+        //else keep calling for invalid entries  
       } else {
         return resetRecall()
       }
   }
 }
 
-
-
-
+//Determines password length between 8-128 with prompt
 function passwordLength() {
   var answer = prompt("What is the length of the password?")
   answer = parseInt(answer)
+  //checks if user inputted number 
   if (isNaN(answer)) {
     alert("Not a number" +
       "\nPassword must be between 8-128 characters")
     return passwordLength()
   }
+  //checks parameter length min/max
   else if (answer > 128) {
     alert("Exceeded maximum password length" +
       "\n Password must be between 8-128 characters")
@@ -91,15 +106,19 @@ function passwordLength() {
   return (password.passwordLength)
 }
 
+//Determines if user wants upper case in generated password
 function isUpperCase() {
   var answer = prompt("Are there uppercase characters?" +
     "\nEnter Yes or No")
+  //checks empty input
   if (answer == null || answer == "") {
     alert("You must answer Yes or No")
     return isUpperCase()
   }
+  //removes whitespace and denotes all to lowercase
   answer = answer.trim();
   answer = answer.toLowerCase();
+  //assigns true/false
   if (answer === "yes") {
     password.hasUpperCase = true;
   }
@@ -112,15 +131,19 @@ function isUpperCase() {
   return (password.hasUpperCase)
 }
 
+//Determines if user wants lower case in generated password
 function isLowerCase() {
   var answer = prompt("Are there lowercase characters?" +
     "\nEnter Yes or No")
+  //checks empty input
   if (answer == null || answer == "") {
     alert("You must answer Yes or No")
     return isLowerCase()
   }
+  //removes whitespace and denotes all to lowercase
   answer = answer.trim();
   answer = answer.toLowerCase();
+  //assigns true/false
   if (answer === "yes") {
     password.hasLowerCase = true;
   }
@@ -133,15 +156,19 @@ function isLowerCase() {
   return (password.hasLowerCase)
 }
 
+//Determines if user wants numbers in generated password
 function isNumber() {
   var answer = prompt("Are there numerical characters?" +
     "\nEnter Yes or No")
+  //checks empty input
   if (answer == null || answer == "") {
     alert("You must answer Yes or No")
     return isNumber()
   }
+  //removes whitespace and denotes all to lowercase
   answer = answer.trim();
   answer = answer.toLowerCase();
+  //assigns true/false
   if (answer === "yes") {
     password.hasNumbers = true;
   }
@@ -154,15 +181,19 @@ function isNumber() {
   return (password.hasNumbers)
 }
 
+//Determines if user wants special characters in generated password
 function isSpecial() {
   var answer = prompt("Are there special characters?" +
     "\nEnter Yes or No")
+  //checks empty input
   if (answer == null || answer == "") {
     alert("You must answer Yes or No")
     return isSpecial()
   }
+  //removes whitespace and denotes all to lowercase
   answer = answer.trim();
   answer = answer.toLowerCase();
+  //assigns true/false
   if (answer === "yes") {
     password.hasSpecial = true;
   }
@@ -174,28 +205,33 @@ function isSpecial() {
   }
   return (password.hasSpecial)
 }
+
+//function to reset numberChoices to 0 and recall initial prompts
 function resetRecall() {
   var numberChoices = 0
   initialPrompts(numberChoices, password)
 }
 
+//entire password generation logic
 function generatePassword(password) {
   var randomPassword = [{ character: "", key: 0 }]
   var randomPasswordArray = [];
-  var randomPasswordKey = [];
   var finalArray = []
   var isTrue = 0
+
+  //determines the amount of isTrue parameters
   for (let i in password) {
     if (password[i] == true)
       isTrue++;
   }
+  //if there are no isTrue, reset/recall
   if (isTrue == 0) {
     alert("All parameters cannot be false")
     return resetRecall()
   }
-  for (var l = 1; l <= password.passwordLength; l++) {
-    randomPasswordKey.push(l)
-  }
+
+  //determines which characters to populate randomPassword array object with number key
+  //arrays lengths is isTrue*password.passwordLength between 8 for 1 parameter 8 length to 512 for 4 parameters 128 length
   for (var j = 0; j < password.passwordLength; j++) {
     if (password.hasUpperCase == true) {
       randomPassword.push({ character: String.fromCharCode(getRandom(65, 90)), key: randomPasswordArray.push(getRandom(1, password.passwordLength)) })
@@ -220,25 +256,31 @@ function generatePassword(password) {
     }
   }
 
-
+  //once array is populated by users chosen parameters, the amount of true, 
+  //the array and final array are passed which populates finalArray with password
   evenlyDistributed(isTrue, randomPassword, finalArray)
-
-  console.log(finalArray.join(''))
-  console.log(finalArray.length)
+  //final array password are joined into returnedPassword function
+  var returnedPassword = finalArray.join('');
+  //console logs the password, length and password object
+  console.log(returnedPassword)
+  console.log(returnedPassword.length)
   console.log(password)
-  console.log(randomPassword)
-  console.log(randomPasswordArray)
-  console.log(randomPasswordKey)
+  //returns the returnedPassword
+  return returnedPassword
 }
 
+//To ensure even distribution of every variable, each user defined variable must occur in final password
 function evenlyDistributed(possibilities, randomPassword, finalArray) {
+  //starts by determining count
   var count1 = 0
   var count2 = 0
   var count3 = 0
   var count4 = 0
+  //if 1 parameter, return password with 1 variable
   if (possibilities == 1)
     for (var i = 1; i < randomPassword.length; i++)
       finalArray.push(randomPassword[i].character.toString())
+  //if 2 parameters, return password with 2 variable
   if (possibilities == 2) {
     for (var i = 1; i < randomPassword.length; i += possibilities) {
       var x = getRandom(1, possibilities)
@@ -246,7 +288,7 @@ function evenlyDistributed(possibilities, randomPassword, finalArray) {
         x = 1
       if (count2 == 0)
         x = 2
-  
+
       while (count1 > count2 && x == 1)
         x = getRandom(1, possibilities)
       while (count2 > count1 && x == 2)
@@ -261,6 +303,7 @@ function evenlyDistributed(possibilities, randomPassword, finalArray) {
       }
     }
   }
+  //if 3 parameters, return password with 3 variable
   if (possibilities == 3) {
     for (var i = 1; i < randomPassword.length; i += possibilities) {
       var x = getRandom(1, possibilities)
@@ -290,6 +333,7 @@ function evenlyDistributed(possibilities, randomPassword, finalArray) {
       }
     }
   }
+  //if 4 parameters, return password with 4 variable
   if (possibilities == 4) {
     for (var i = 1; i < randomPassword.length; i += possibilities) {
       var x = getRandom(1, possibilities)
@@ -327,9 +371,13 @@ function evenlyDistributed(possibilities, randomPassword, finalArray) {
     }
   }
 }
+
+//Random number generator inclusive
 function getRandom(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+//initial prompts
 function parameterPrompts() {
   password = initializedParameters()
   parameterModification = prompt("Select which parameters to modify:" +
@@ -346,21 +394,19 @@ function parameterPrompts() {
   }
 }
 
-// function generatePassword{
-
-// }
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
-// function writePassword() {
-//   var password = generatePassword();
-//   var passwordText = document.querySelector("#password");
+function writePassword() {
+  parameterPrompts()
+  var password1 = generatePassword(password);
+  var passwordText = document.querySelector("#password");
 
-//   passwordText.value = password;
+  passwordText.value = password1;
 
 
-// }
+}
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", parameterPrompts);
+generateBtn.addEventListener("click", writePassword);

@@ -14,7 +14,7 @@ A password generator is a quick an easy way to create a password, meeting parame
 ![PasswordInitialPrompt](assets/images/initialPromptSS.PNG)
 
 
-- By typeing '-1' the user is prompted with options to exit the password generator or generate a password
+- By typing '-1' the user is prompted with options to exit the password generator or generate a password
 
 ![exitFunction](assets/images/exitFunctionSS.PNG)
 
@@ -24,7 +24,7 @@ A password generator is a quick an easy way to create a password, meeting parame
 ![noPasswordLength](assets/images/noPasswordLengthSS.PNG)
 
 
-- The password must be between 8-128 characters. Attmepting to enter a password outside of these parameters returns the following function.
+- The password must be between 8-128 characters. Attempting to enter a password outside of these parameters returns the following function.
 
 ![passwordParametersNotMet](assets/images/passwordParametersSS.PNG)
 

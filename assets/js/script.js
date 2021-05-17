@@ -18,7 +18,7 @@ function initialPrompts(numberChoices, password) {
   switch (parseInt(numberChoices)) {
     //resets to 0 to determine next set of parameters
     case 0:
-      numberChoices = prompt("Choose another parameter" + "\nSelect which parameters to modify:" +
+      numberChoices = prompt("Please Enter a number, 1-5 to change parameters" + "\nChoose another parameter" + "\nSelect which parameters to modify:" +
         "\n1 :Length                       | " + password.passwordLength +
         "\n2 :Uppercase                 | " + password.hasUpperCase +
         "\n3 :Lowercase                 | " + password.hasLowerCase +
@@ -76,6 +76,7 @@ function initialPrompts(numberChoices, password) {
         }
         //else keep calling for invalid entries  
       } else {
+        alert("Please Enter a number 1-5 to change parameters")
         return resetRecall()
       }
   }
@@ -380,7 +381,7 @@ function getRandom(min, max) {
 //initial prompts
 function parameterPrompts() {
   password = initializedParameters()
-  parameterModification = prompt("Select which parameters to modify:" +
+  parameterModification = prompt("Please Enter a number, 1-5 to change parameters" + "\nSelect which parameters to modify:" +
     "\n1 :Length                       | " + password.passwordLength +
     "\n2 :Uppercase                 | " + password.hasUpperCase +
     "\n3 :Lowercase                 | " + password.hasLowerCase +

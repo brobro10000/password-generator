@@ -1,5 +1,6 @@
 // Assignment code here
 //All parameters set to default by function, returns password
+var exitParameter = 0;
 function initializedParameters() {
   var password =
   {
@@ -72,6 +73,7 @@ function initialPrompts(numberChoices, password) {
           return
           //Exit generater if exit function and cancel  
         } else {
+          exitParameter = 1
           alert("Exiting Generator")
         }
         //else keep calling for invalid entries  
@@ -401,6 +403,10 @@ var generateBtn = document.querySelector("#generate");
 // Write password to the #password input
 function writePassword() {
   parameterPrompts()
+  if(exitParameter == 1)
+  {
+    return
+  }
   var password1 = generatePassword(password);
   var passwordText = document.querySelector("#password");
 

@@ -1,6 +1,5 @@
 // Assignment code here
 //All parameters set to default by function, returns password
-var exitParameter = 0;
 function initializedParameters() {
   var password =
   {
@@ -12,10 +11,11 @@ function initializedParameters() {
   }
   return (password)
 }
-
+var exitParameter = 0;
 /*Takes user input and password object to determine user input cases to correct for 
 incorrect inputs and prohibited inputs*/
 function initialPrompts(numberChoices, password) {
+  
   switch (parseInt(numberChoices)) {
     //resets to 0 to determine next set of parameters
     case 0:
@@ -405,6 +405,7 @@ function writePassword() {
   parameterPrompts()
   if(exitParameter == 1)
   {
+    exitParameter = 0;
     return
   }
   var password1 = generatePassword(password);
